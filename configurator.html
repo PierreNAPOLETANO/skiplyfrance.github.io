@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smilio Action Configurator</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="js/formcalculations.js"></script>
+
+<link rel="stylesheet" href="css/configurator.css">
+
+</head>
+<body onload='hideDLFrame()'>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="./">
+        Skiply
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="./simulator.html">Simulator</a></li>
+        <li class='active'><a href="./configurator.html">Configurator <span class="sr-only">(current)</span></a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Help <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="https://faq.skiply.eu">FAQ</a></li>
+            <li><a href="https://www.youtube.com/channel/UCw1MuxiRPWJuWKNCWjPQp_w">Videos</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="https://boutique.smilio.fr">How to buy ?</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+    <div class="row">
+    <header>
+  <h1>Smilio Action configurator (FW &gt; 2.0.0)</h1>
+</header>
+
+<form id="smilioParameters" onsubmit="return false;">
+  <div class="col-sm-6">
+<!-- Form Name -->
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="control-label" for="csc">CSC</label>
+    <select id="csc" name="csc" class="form-control">
+      <option value="0">Always send</option>
+      <option value="1" selected="selected">Send if changed</option>
+    </select>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="control-label" for="eat">EAT</label>
+    <select id="eat" name="eat" class="form-control">
+      <option value="0" selected="selected">Immediate send</option>
+      <option value="1">Periodic send</option>
+      <option value="2">Both</option>
+    </select>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="control-label" for="dutycyce">Duty Cycle</label>
+    <select id="dutycycle" name="dutycyce" class="form-control">
+      <option value="0">Off (only for tests)</option>
+      <option value="1" selected="selected">On (required for production)</option>
+    </select>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="control-label" for="backoff">LoRaWAN backoff</label>
+    <select id="backoff" name="backoff" class="form-control">
+      <option value="0" selected="selected">Off</option>
+      <option value="1">On</option>
+    </select>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="control-label" for="piggyback">LoRaWAN piggyback</label>
+    <select id="piggyback" name="piggyback" class="form-control">
+      <option value="0" selected="selected">Off</option>
+      <option value="1">On</option>
+    </select>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="control-label" for="ADR">LoRaWAN ADR</label>
+    <select id="ADR" name="ADR" class="form-control">
+      <option value="0" selected="selected">Off</option>
+      <option value="1">On</option>
+    </select>
+</div>
+
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="control-label" for="forceDR0">LoRaWAN Force DR0 at join</label>
+    <select id="forceDR0" name="forceDR0" class="form-control">
+      <option value="0">Off</option>
+      <option value="1" selected="selected">On</option>
+    </select>
+</div>
+
+</div>
+
+<div class="col-sm-6">
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="control-label" for="dtx">DTX</label>  
+  <input id="dtx" name="dtx" type="number" value="30" class="form-control input-md" min="1" max="1440" required="">
+  <span class="help-block">Time between 2 periods in minutes, max = 1440</span>  
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="control-label" for="tpb">TPB</label>  
+  <input id="tpb" name="tpb" type="number" value="5" class="form-control input-md" min="1" max="60" required="">
+  <span class="help-block">Minimum time between 2 pushes, in seconds, max = 60</span>  
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="control-label" for="rnm">RNM</label>  
+  <select id="rnm" name="rnm" class="form-control">
+      <option value="01" selected="selected">One push during TPB</option>
+      <option value="02">One push per button during TPB</option>
+      <option value="03">Special Mode "03"</option>
+      <option value="04">Special Mode "04"</option>
+      <option value="08">Pulse Mode</option>
+      <option value="09">Code Mode</option>
+  </select>
+  <span class="help-block">Running Mode (see documentation for special modes)</span>  
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="control-label" for="lwf">LWF</label>  
+  <input id="lwf" name="lwf" type="text" value="00" class="form-control input-md" required="" pattern="([A-F]|[0-9])([A-F]|[0-9])">
+  <span class="help-block">LoRaWAN Special Mode, 00 to FF (hexadecimal)</span>  
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="control-label" for="tpbq">TPBQ</label>  
+  <input id="tpbq" name="tpbq" type="number" value="5" min="1" max="60" class="form-control input-md" required="">
+  <span class="help-block">Minimum time between 2 magnetic detections, in seconds, max = 60</span>  
+</div>
+</div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+<div id="DLFrame"></div>
+<div class="form-group">
+  <label class="control-label" for="singlebutton"></label>
+  	<input type='submit' id='submit' value='Submit' class="btn btn-primary" onclick="showDLFrame()" />
+  </div>
+</div>
+</div>
+</form>
+</body>
+</html>

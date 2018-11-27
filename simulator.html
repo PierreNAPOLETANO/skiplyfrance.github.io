@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smilio Action Simulator</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="js/simulator.js"></script>
+
+<link rel="stylesheet" href="css/simulator.css">
+
+<!-- Latest compiled and minified JavaScript -->
+</head>
+<body onload="initPage()">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="./">
+      	Skiply
+    	</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class='active'><a href="./simulator.html">Simulator <span class="sr-only">(current)</span></a></li>
+        <li><a href="./configurator.html">Configurator</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Help <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="https://faq.skiply.eu">FAQ</a></li>
+            <li><a href="https://www.youtube.com/channel/UCw1MuxiRPWJuWKNCWjPQp_w">Videos</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="https://boutique.smilio.fr">How to buy ?</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+	<header>
+		<h1>Smilio Action Simulator</h1>
+		</header>
+	<div class="row">
+	<div class="col-sm-6">
+<div class="svg-container">
+		<svg id="svg8" preserveAspectRatio="xMinYMin meet" viewBox="0 0 100 100" class="svg-content">
+		 <metadata id="metadata5">
+		  <rdf:RDF>
+		   <cc:Work rdf:about="">
+		    <dc:format>image/svg+xml</dc:format>
+		    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+		    <dc:title/>
+		   </cc:Work>
+		  </rdf:RDF>
+		 </metadata>
+		 <g id="layer1" transform="translate(-68.415 -38.585)">
+		  <rect id="rect210" x="68.607" y="38.777" width="99.616" height="99.616" ry="4.1116" fill="#3c4349" stroke="#000" stroke-width=".38354"/>
+		  <g stroke-width=".30887">
+		   <circle id="button1" cx="86.039" cy="75.511" r="9.339" fill="#74a7c4" onclick="buttonpressed(1)" onmouseover="buttonover(1)" onmouseout="buttonout(1)" cursor="pointer"/>
+		   <circle id="button2" cx="150.17" cy="75.511" r="9.339" fill="#bf5389" onclick="buttonpressed(2)" onmouseover="buttonover(2)" onmouseout="buttonout(2)" cursor="pointer"/>
+		   <circle id="button4" cx="86.039" cy="120.34" r="9.339" fill="#d6b72b" onclick="buttonpressed(4)" onmouseover="buttonover(4)" onmouseout="buttonout(4)" cursor="pointer"/>
+		   <circle id="button5" cx="150.17" cy="120.34" r="9.339" fill="#df7916" onclick="buttonpressed(5)" onmouseover="buttonover(5)" onmouseout="buttonout(5)" cursor="pointer"/>
+		  </g>
+		  <circle id="button3" cx="118.41" cy="97.997" r="10.584" fill="#9cc136" stroke-width=".35005" onclick="buttonpressed(3)" onmouseover="buttonover(3)" onmouseout="buttonout(3)" cursor="pointer"/>
+		  <g fill="#fff" stroke-width=".37103">
+		   <circle id="led1" cx="108.76" cy="70.841" r="1.5565"/>
+		   <circle id="led2" cx="118.41" cy="70.841" r="1.5565"/>
+		   <circle id="led3" cx="128.07" cy="70.841" r="1.5565"/>
+		  </g>
+		  <path id="rect210-2" d="m72.718 38.777h91.393c2.2778 0 4.1116 1.8338 4.1116 4.1116v18.302h-32.702s-3.3008 3.0083-7.6596 3.0006c-5.0786-9e-3 -7.7754-3.0006-7.7754-3.0006h-51.48v-18.302c0-2.2778 1.8338-4.1116 4.1116-4.1116z" fill="#ebebe9" stroke="#000" stroke-width=".38354"/>
+		 </g>
+		</svg>
+	</div>
+		<div class="svg-badge" id="div-badge">
+		<svg id="svg9" preserveAspectRatio="xMinYMin meet" viewBox="0 0 70 30" class="svg-content">
+ <metadata id="metadata5">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g id="badge" transform="translate(-36.326 -29.035)"  onclick="badgepressed()" onmouseover="badgeover()" onmouseout="badgeout()" cursor="pointer">
+  <g id="g875">
+   <g>
+    <path id="badgeshadow" d="m36.661 46.372s1.0844 4.2324 3.8869 5.0034c6.3461 1.7457 15.579 3.1949 17.946 2.7291 1.4171-0.27883 2.8275-0.85806 3.8869-1.8194 1.5422-1.3995 3.1839-5.3755 3.1839-5.3755z" fill="#9bc0d5" stroke="#666" stroke-width=".12107px"/>
+    <path id="badgetop" d="m39.886 38.97c4.149-1.8721 5.9425-2.4267 13.232-4.7139 7.2895-2.2872 12.178 1.8625 13.025 7.3603 0.78162 5.0732-2.1904 11.009-8.973 10.751-6.7825-0.25805-11.016-1.5402-15.093-2.357-4.0768-0.81671-5.7892-2.4328-5.6649-5.665 0.0366-0.9522-0.67563-3.5034 3.4734-5.3755z" fill="#74a7c4" stroke="#4d4d4d" stroke-width=".12107px"/>
+    <ellipse id="path830" cx="39.844" cy="44.18" rx="1.3232" ry="1.2819" fill="#fff" stroke="#4d4d4d" stroke-width=".13178"/>
+   </g>
+   <path id="onde1" d="m52.093 32.26s2.1873-0.93132 4.8055-0.93542c2.9448-0.0046 4.9522 1.0455 4.9522 1.0455" fill="none" stroke="#74a7c4" stroke-width=".36149"/>
+   <path id="onde2" d="m51.05 30.576s1.8522-1.3525 5.9544-1.3439c3.613 0.0076 5.789 1.5506 5.789 1.5506" fill="none" stroke="#74a7c4" stroke-width=".39581"/>
+   <text id="text845" x="44.035179" y="45.158859" fill="#000000" font-family="sans-serif" font-size="5.6083px" letter-spacing="0px" stroke-width=".21031" word-spacing="0px" style="line-height:1.25" xml:space="preserve"><tspan id="tspan843" x="44.035179" y="45.158859" fill="#ffffff" font-family="'Arial Narrow'" font-size="5.6083px" stroke-width=".21031">Badge</tspan></text>
+  </g>
+ </g>
+</svg>
+	</div>
+	</div>
+
+<div class="col-sm-6">
+  	
+	<form id="smilioParameters" onsubmit="return false;">
+		<fieldset>
+
+		<!-- Form Name -->
+
+		<!-- Select Basic -->
+		<h2>Running Mode</h2>
+		<div class="form-group">
+		  <label></label>  
+		  <select id="rnm" name="rnm" class="form-control" onchange="selectMode()">
+		      <option value="01" selected="selected">Normal</option>
+		      <option value="02">Code</option>
+		      <option value="03">Pulse</option>
+		  </select>
+		  <span class="help-block">Running Mode (see documentation for special modes)</span>  
+		</div>
+	</fieldset>
+</form>
+		<div id="listCounters">
+			<h3>Counter states & variations</h3>
+			<span id="WarningCount"></span>
+			<ul class="list-group">
+			  <li class="list-group-item"><b>Counter 1 (hex):</b> <span id="counter1">0000</span><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Variation since last send:</b> <span id="increment1">0</span><br /></li>
+			  <li class="list-group-item"><b>Counter 2 (hex):</b> <span id="counter2">0000</span><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Variation since last send:</b> <span id="increment2">0</span><br /></li>
+			  <li class="list-group-item"><b>Counter 3 (hex):</b> <span id="counter3">0000</span><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Variation since last send:</b> <span id="increment3">0</span><br /></li>
+			  <li class="list-group-item"><b>Counter 4 (hex):</b> <span id="counter4">0000</span><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Variation since last send:</b> <span id="increment4">0</span><br /></li>
+			  <li class="list-group-item"><b>Counter 5 (hex):</b> <span id="counter5">0000</span><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Variation since last send:</b> <span id="increment5">0</span><br /></li>
+			  <li class="list-group-item"><b>Badge:</b> <span id="currentBadge">No</span></li>
+			</ul>
+		</div>
+		<div id="listCodes">
+			<h3>Codes</h3>
+			<span id="WarningCode"></span>
+			<ul class="list-group">
+			  <li class="list-group-item"><b>Current code:</b> <span id="currentCode">000000</span><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Badge:</b> <span id="currentBadgeCode">No</span><br /></li>
+			  <li class="list-group-item"><b>Last code:</b> <span id="lastCode">000000</span><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Badge:</b> <span id="oldBadge">No</span><br /></li>
+			</ul>
+		</div>
+				  <h3>Destination URL for Data</h3>
+			<form id="smilioParameters" onsubmit="return false;">
+		<fieldset>
+		<div class="form-group">  
+		  <input id="pushurl" name="pushurl" type="url" placeholder="https://test.yourserver.com" class="form-control input-md" pattern="(https://.*)|(http://.*)|^$">
+		  <span class="help-block">We will post data to this URL. For security reasons, the destination URL must accept Cross-Origin requests (not needed with the "real" Skiply Push API, but mandatory for the simulator). FYI, it works with Zapier.</span>  
+		</div>
+		<div class="form-group">  
+			<h3>Device Name</h3>
+		  <input id="deviceName" name="deviceName" type="text" value="SA999999" class="form-control input-md" required="">
+		</div>
+
+		<div class="form-group">
+		  	<input type='submit' id='submit' value='Send Manual Frame' class="btn btn-primary" onclick="sendFrame()" />
+		</div>
+
+		</fieldset>
+	</form>
+	<h3>Last Frame Sent</h3>
+	<div id="lastStatus"></div>
+	<span id="lastFrame">No frame sent</span>
+</div>
+</div>
+</div>
+</body>
+</html>

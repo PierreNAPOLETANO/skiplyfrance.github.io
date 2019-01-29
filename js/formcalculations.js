@@ -24,7 +24,7 @@ function showDLFrame()
 			dtx_bin = "0" + dtx_bin;
 		};
 
-		var concat_dl = parseInt(dutycycle + backoff + piggyback + ADR + forceDR0 + dtx_bin,2);
+		var concat_dl = parseInt(dutycycle + backoff + piggyback + forceDR0 + ADR + dtx_bin,2);
 		concat_dl = concat_dl.toString(16);
 
 		for (var i = concat_dl.length; i < 4; i++) {

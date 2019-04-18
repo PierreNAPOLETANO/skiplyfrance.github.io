@@ -30,7 +30,7 @@ function clickButton(id) {
         document.getElementById("smilioDeviceId").focus();
         return;
     }
-    let link = `http://www.lunabee.studio/skiply/index.php?device=${deviceID}&button=${id}&type=${locationType}`;
+    let link = `https://www.86percent.co/prototypes/skiply/index.php?device=${deviceID}&button=${id}&type=${locationType}`;
 
     $.ajax({
         url: link,

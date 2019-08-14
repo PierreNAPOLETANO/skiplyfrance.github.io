@@ -238,7 +238,7 @@ function badgeover() {
 
 function badgeout() {
     var divbadge = document.getElementById("badgetop");
-    divbadge.setAttribute("fill", "#74a7c4");
+    divbadge.setAttribute("fill", "#4fc0e8");
 }
 
 function badgepressed() {
@@ -345,13 +345,13 @@ function codeApiMessage() {
 function buttonover(button) {
     var objCount = "button" + button.toString();
     var divobj = document.getElementById(objCount);
-    divobj.setAttribute("fill", normalColor[button-1]);
+    divobj.setAttribute("fill", overColor[button-1]);
 }
 
 function buttonout(button) {
     var objCount = "button" + button.toString();
     var divobj = document.getElementById(objCount);
-    divobj.setAttribute("fill", overColor[button-1]);
+    divobj.setAttribute("fill", normalColor[button-1]);
 }
 
 function clickButton() {

@@ -15,28 +15,6 @@ var last_send;
 var last_code_minute = 0;
 var device_name;
 
-function syntaxHighlight(json) {
-    if (typeof json != 'string') {
-         json = JSON.stringify(json, undefined, 2);
-    }
-    json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
-        var cls = 'number';
-        if (/^"/.test(match)) {
-            if (/:$/.test(match)) {
-                cls = 'key';
-            } else {
-                cls = 'string';
-            }
-        } else if (/true|false/.test(match)) {
-            cls = 'boolean';
-        } else if (/null/.test(match)) {
-            cls = 'null';
-        }
-        return '<span class="' + cls + '">' + match + '</span>';
-    });
-}
-
 function initPage() {
     var divCodes = document.getElementById("listCodes");
     divCodes.style.display='none';
@@ -141,7 +119,8 @@ function sendFrame() {
         $.ajax({
             url:url,
             method:"POST", //First change type to method here
-            data:JSON.stringify(apiMessage),
+            data:apiMessage,
+            dataType: "json",
             success: function() {
                 var spanLastStatus = document.getElementById("lastStatus");
                 spanLastStatus.innerHTML = "Request successfull";
@@ -277,19 +256,19 @@ function countApiMessage() {
     }
     var currentTime = new Date();
     var apiMessage = {
-        'device':device_name,
-        'time':currentTime,
-        'sq_num': sq_num,
-        'frameType':frameType,
-        'data': {
-            'index':[parseInt(count[0],16),parseInt(count[1],16),parseInt(count[2],16),parseInt(count[3],16),parseInt(count[4],16)],
-            'increment':count_variation,
-            'ack': current_badge,
-            'button_1': count_variation[0],
-            'button_2': count_variation[1],
-            'button_3': count_variation[2],
-            'button_4': count_variation[3],
-            'button_5': count_variation[4]
+        device:device_name,
+        time:currentTime.toISOString(),
+        sq_num: sq_num,
+        frameType:frameType,
+        data: {
+            index:[parseInt(count[0],16),parseInt(count[1],16),parseInt(count[2],16),parseInt(count[3],16),parseInt(count[4],16)],
+            increment:count_variation,
+            ack: current_badge,
+            button_1: count_variation[0],
+            button_2: count_variation[1],
+            button_3: count_variation[2],
+            button_4: count_variation[3],
+            button_5: count_variation[4]
         },
         'negativeValue': 0
     };
@@ -312,31 +291,31 @@ function codeApiMessage() {
         last_code_minute = Math.ceil((currentTime - last_send)/60000);
     }
     var apiMessage = {
-        'device':device_name,
-        'time':currentTime,
-        'dc_delay':0,
-        'sq_num': sq_num,
-        'frameType':frameType,
-        'data': {
-            'code':new_code.toString().split(',').join(''),
-            'increment':count_variation,
-            'ack': current_badge,
-            'button_1': count_variation[0],
-            'button_2': count_variation[1],
-            'button_3': count_variation[2],
-            'button_4': count_variation[3],
-            'button_5': count_variation[4]
+        device:device_name,
+        time:currentTime.toISOString(),
+        dc_delay:0,
+        sq_num: sq_num,
+        frameType:frameType,
+        data: {
+            code:new_code.toString().split(',').join(''),
+            increment:count_variation,
+            ack: current_badge,
+            button_1: count_variation[0],
+            button_2: count_variation[1],
+            button_3: count_variation[2],
+            button_4: count_variation[3],
+            button_5: count_variation[4]
         },
-        'previous': {
-            'code':old_code.toString().split(',').join(''),
-            'increment':old_count_variation,
-            'ack': old_badge,
-            'button_1': old_count_variation[0],
-            'button_2': old_count_variation[1],
-            'button_3': old_count_variation[2],
-            'button_4': old_count_variation[3],
-            'button_5': old_count_variation[4],
-            'previous_time':last_code_minute
+        previous: {
+            code:old_code.toString().split(',').join(''),
+            increment:old_count_variation,
+            ack: old_badge,
+            button_1: old_count_variation[0],
+            button_2: old_count_variation[1],
+            button_3: old_count_variation[2],
+            button_4: old_count_variation[3],
+            button_5: old_count_variation[4],
+            previous_time:last_code_minute
         }
     };
     return apiMessage;

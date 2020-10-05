@@ -119,7 +119,6 @@ function sendFrame() {
         $.ajax({
             url:url,
             method:"POST", //First change type to method here
-            dataType: "json",
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(apiMessage),
             success: function() {

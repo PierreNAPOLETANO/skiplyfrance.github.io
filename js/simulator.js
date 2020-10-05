@@ -119,8 +119,9 @@ function sendFrame() {
         $.ajax({
             url:url,
             method:"POST", //First change type to method here
-            data: apiMessage,
             dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(apiMessage),
             success: function() {
                 var spanLastStatus = document.getElementById("lastStatus");
                 spanLastStatus.innerHTML = "Request successfull";

@@ -51,7 +51,7 @@ function showDLFrame()
     //display the result
     var divobj = document.getElementById("DLFrame");
     divobj.style.display='block';
-    if (tpb <= 60 && tpb > 2 && tpbq <= 60 && dtx <= 1440 && regex1.test(lwf)) {
+    if (tpb <= 60 && tpbq > 2 && tpbq <= 60 && dtx <= 1440 && regex1.test(lwf)) {
     	divobj.innerHTML = "Frame: "+ DLFrame.toUpperCase();
     } else {
     	divobj.innerHTML = "Invalid parameters";

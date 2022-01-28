@@ -52,8 +52,10 @@ function showDLFrame()
     var divobj = document.getElementById("DLFrame");
     divobj.style.display='block';
     if (tpb <= 60 && tpbq > 2 && tpbq <= 60 && dtx <= 1440 && regex1.test(lwf)) {
-    	divobj.innerHTML = "Frame: "+ DLFrame.toUpperCase();
+    	divobj.style.backgroundColor='green';
+      divobj.innerHTML = "Frame: "+ DLFrame.toUpperCase();
     } else {
+      divobj.style.backgroundColor='red';
     	divobj.innerHTML = "Invalid parameters";
     }
 

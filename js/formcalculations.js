@@ -53,7 +53,7 @@ function showDLFrame()
     divobj.style.display='block';
     if (tpb <= 60 && tpbq > 2 && tpbq <= 60 && dtx <= 1440 && regex1.test(lwf)) {
     	divobj.style.backgroundColor='green';
-      divobj.innerHTML = "Hex Frame: "+ DLFrame.toUpperCase() + "<br /><br />Base 64 Frame (Helium): " + Buffer.from(DLFrame.toUpperCase(),'hex').toString('base64');
+      divobj.innerHTML = "Hex Frame: "+ DLFrame.toUpperCase() + "<br /><br />For base 64 Frame (Helium), use <a href='https://base64.guru/converter/encode/hex'>this converter</a>"
     } else {
       divobj.style.backgroundColor='red';
     	divobj.innerHTML = "Invalid parameters";

@@ -9,6 +9,6 @@
 
 #DLFrame a {
 	color:white;
-	font-size: 1.3em;
 	font-weight: bold;
+	text-decoration: underline;
 }

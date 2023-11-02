@@ -133,13 +133,13 @@
 <div class="form-group">
   <label class="control-label" for="dtx">DTX</label>  
   <input id="dtx" name="dtx" type="number" value="30" class="form-control input-md" min="1" max="1440" required="">
-  <span class="help-block">Time between 2 periods in minutes, max = 1440</span>  
+  <span class="help-block">Time between 2 periods in minutes, min = 1, max = 1440</span>  
 </div>
 
 <div class="form-group">
   <label class="control-label" for="tpb">TPB</label>  
-  <input id="tpb" name="tpb" type="number" value="5" class="form-control input-md" min="1" max="60" required="">
-  <span class="help-block">Minimum time between 2 pushes, in seconds, min = 1 max = 60. Time to enter a code in code mode.</span>  
+  <input id="tpb" name="tpb" type="number" value="5" class="form-control input-md" min="3" max="60" required="">
+  <span class="help-block">Minimum time between 2 pushes, in seconds, min = 3 max = 60. Time to enter a code in code mode.</span>  
 </div>
 
 <div class="form-group">

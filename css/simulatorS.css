@@ -1,23 +1,19 @@
-.svg-container { 
-	display: inline-block;
-	position: relative;
+.svg-container, .svg-badge, .svg-content { display: inline-block; }
+.svg-container, .svg-badge { vertical-align: middle; overflow: hidden; position: relative; }
+
+.svg-container {
 	width: 100%;
-	vertical-align: middle; 
-	overflow: hidden; 
+	overflow: hidden;
 }
 
-.svg-badge { 
-	display: inline-block;
-	position: relative;
+.svg-badge {
 	width: 60%;
 	padding-bottom: 40%;
 	margin-left:30%;
-	vertical-align: middle; 
-	overflow: hidden; 
+	overflow: hidden;
 }
 
-.svg-content { 
-	display: inline-block;
+.svg-content {
 	position: absolute;
 	top: 0;
 	left: 0;

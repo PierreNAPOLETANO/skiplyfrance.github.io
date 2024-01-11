@@ -1,14 +1,14 @@
+#DLFrame, #DLFrame a { font-weight: bold; }
+
 #DLFrame {
 	margin:auto;
 	padding: 15px;
 	color:white;
 	margin-bottom:15px;
 	font-size: 1.3em;
-	font-weight: bold;
 }
 
 #DLFrame a {
 	color:white;
-	font-weight: bold;
 	text-decoration: underline;
 }

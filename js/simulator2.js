@@ -48,7 +48,7 @@ function clickButton(id) {
 }
 
 function showStatus(text, bgColor) {
-    var spanLastStatus = document.getElementById("lastStatus");
+    let spanLastStatus = document.getElementById("lastStatus");
     spanLastStatus.innerHTML = text;
     spanLastStatus.style.backgroundColor = bgColor;
     spanLastStatus.style.padding = "3px";

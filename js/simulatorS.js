@@ -1,164 +1,157 @@
-var count = ["0000","0000","0000","0000","0000"];
-var old_count = ["0000","0000","0000","0000","0000"];
-var count_variation = [0,0,0,0,0];
-var old_count_variation = [0,0,0,0,0];
-var normalColor = ["#4fc0e8", "#f34f96","#f5a800","#ff9119","#90c715"];
-var overColor = ["#72afc5","#d46e9a","#c7972e","#cf8f49","#83a438"];
-var frame;
-var old_state = [0,0,0,0,0];
-var new_code = ["0","0","0","0","0","0"];
-var old_code = ["0","0","0","0","0","0"];
-var current_badge = 0;
-var old_badge = 0;
-var sq_num = 0;
-var last_send;
-var last_code_minute = 0;
-var device_name;
+let count = ['0000','0000','0000','0000','0000'];
+let old_count = ['0000','0000','0000','0000','0000'];
+let count_variation = [0,0,0,0,0];
+let old_count_variation = [0,0,0,0,0];
+let normalColor = ['#4fc0e8', '#f34f96','#f5a800','#ff9119','#90c715'];
+let overColor = ['#72afc5','#d46e9a','#c7972e','#cf8f49','#83a438'];
+let frame;
+let old_state = [0,0,0,0,0];
+let new_code = ['0','0','0','0','0','0'];
+let old_code = ['0','0','0','0','0','0'];
+let current_badge = 0;
+let old_badge = 0;
+let sq_num = 0;
+let last_send;
+let last_code_minute = 0;
+let device_name;
 
 function initPage() {
-    var divCodes = document.getElementById("listCodes");
+    let divCodes = document.getElementById('listCodes');
     divCodes.style.display='none';
     resetWarnings();
-    var divbadge = document.getElementById("div-badge");
-    divbadge.style["margin-top"] = "2em";
-    var divonde1 = document.getElementById("onde1");
-    divonde1.style["display"] = "none";
-    var divonde2 = document.getElementById("onde2");
-    divonde2.style["display"] = "none";
+
+    let divbadge = document.getElementById('div-badge');
+    let divonde1 = document.getElementById('onde1');
+    let divonde2 = document.getElementById('onde2');
+
+    divbadge.style['margin-top'] = '2em';
+    divonde1.style['display'] = 'none';
+    divonde2.style['display'] = 'none';
 }
 
 function resetValues() {
-    count = ["0000","0000","0000","0000","0000"];
+    count = ['0000','0000','0000','0000','0000'];
     old_state = [0,0,0,0,0];
-    old_count = ["0000","0000","0000","0000","0000"];
+    old_count = ['0000','0000','0000','0000','0000'];
     count_variation = [0,0,0,0,0];
     old_count_variation = [0,0,0,0,0];
-    new_code = ["0","0","0","0","0","0"];
-    old_code = ["0","0","0","0","0","0"];
+    new_code = ['0','0','0','0','0','0'];
+    old_code = ['0','0','0','0','0','0'];
     for (i = 1; i < 6; i++) {
-        var objVar = "increment" + i.toString();
-        var objCount = "counter" + i.toString();
-        var divobj = document.getElementById(objCount);
-        var divvar = document.getElementById(objVar);
+        let objVar = 'increment' + i.toString();
+        let objCount = 'counter' + i.toString();
+        let divobj = document.getElementById(objCount);
+        let divvar = document.getElementById(objVar);
+
         divobj.innerHTML = count[i-1];
         divvar.innerHTML = count_variation[i-1];
     }
-    var objCode = document.getElementById("currentCode");
-    objCode.innerHTML = "000000";
 
-    var objOldCode = document.getElementById("lastCode");
-    objCode.innerHTML = "000000";
+    let objCode = document.getElementById('currentCode');
+    objCode.innerHTML = '000000';
+    objCode.innerHTML = '000000';
 
     old_badge = 0;
     current_badge = 0;
-
     sq_num = 0;
 
     resetWarnings();
 }
 
 function resetWarnings() {
-    var divWarningCode = document.getElementById("WarningCode");
+    let divWarningCode = document.getElementById('WarningCode');
+    let divWarningCount = document.getElementById('WarningCount');
+    let divCurrentBadge = document.getElementById('currentBadge');
+    let divCurrentBadgeCode = document.getElementById('currentBadgeCode');
+    let divOldBadge = document.getElementById('oldBadge');
+
     divWarningCode.style.display='none';
-    var divWarningCount = document.getElementById("WarningCount");
     divWarningCount.style.display='none';
-    var divCurrentBadge = document.getElementById("currentBadge");
-    divCurrentBadge.innerHTML = "No";
-    var divCurrentBadgeCode = document.getElementById("currentBadgeCode");
-    divCurrentBadgeCode.innerHTML = "No";
-    var divOldBadge = document.getElementById("oldBadge");
-    if (old_badge === 1) {
-        divOldBadge.innerHTML = "Yes";
-    } else {
-        divOldBadge.innerHTML = "No";  
-    }
+
+    divCurrentBadge.innerHTML = 'No';
+    divCurrentBadgeCode.innerHTML = 'No';
+
+    divOldBadge.innerHTML = old_badge === 1 ? 'Yes' : 'No';
 }
 
 function selectMode() {
-    var divCodes = document.getElementById("listCodes");
-    var divRNM = document.getElementById("rnm");
-    var divCounters = document.getElementById("listCounters");
-    if (divRNM.value === "02") {
-        divCodes.style.display='block';
-        divCounters.style.display='none';
-    } else {
-        divCodes.style.display='none';
-        divCounters.style.display='block';  
-    }
+    let divCodes = document.getElementById('listCodes');
+    let divRNM = document.getElementById('rnm');
+    let divCounters = document.getElementById('listCounters');
+
+    const isDivRNM02 = divRNM.value === '02';
+    divCodes.style.display = isDivRNM02 ? 'block' : 'none';
+    divCounters.style.display = isDivRNM02 ? 'none' : 'block';
+
     resetValues();
 }
 
 function incrementCount(counter) {
 	counter = (parseInt(counter, 16) + 1).toString(16);
-	var i;
-	var limit = counter.length;
-	for (i=0; i<(4 - limit); i++) {
-		counter = "0" + counter;
-	};
+	let limit = counter.length;
+    counter = '0'.repeat(4 - limit) + counter;
 	return counter;
 }
 
 function sendFrame() {
-    var divobj = document.getElementById("pushurl");
-    //var http = new XMLHttpRequest();
-    var divRNM = document.getElementById("rnm");
-    var url = divobj.value;
+    var divobj = document.getElementById('pushurl');
+    let divRNM = document.getElementById('rnm');
+    let url = divobj.value;
     sq_num++;
-    var divname = document.getElementById("deviceName");
+    let divname = document.getElementById('deviceName');
     device_name = divname.value;
-    if (divRNM.value === "01" || divRNM.value === "03") {
-        var apiMessage = countApiMessage();
-    } else {
-        var apiMessage = codeApiMessage();
-    }
+    let apiMessage = divRNM.value === '01' || divRNM.value === '03' ? countApiMessage() : codeApiMessage();
 
-    var frameResult = document.getElementById("lastFrame");
+    var frameResult = document.getElementById('lastFrame');
     frameResult.innerHTML = JSON.stringify(apiMessage,null, 2);
 
-    if (url !== "") {
+    if (url !== '') {
         $.ajax({
             url:url,
-            method:"POST", //First change type to method here
+            method:'POST', //First change type to method here
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(apiMessage),
             success: function() {
-                var spanLastStatus = document.getElementById("lastStatus");
-                spanLastStatus.innerHTML = "Request successfull";
-                spanLastStatus.style.backgroundColor = "green";
-                spanLastStatus.style.padding = "3px";
-                spanLastStatus.style.color = "white";
+                var spanLastStatus = document.getElementById('lastStatus');
+                spanLastStatus.innerHTML = 'Request successfull';
+                spanLastStatus.style.backgroundColor = 'green';
+                spanLastStatus.style.padding = '3px';
+                spanLastStatus.style.color = 'white';
             },
-            error: function(xhr, status, text) {
-                var spanLastStatus = document.getElementById("lastStatus");
-                spanLastStatus.innerHTML = "The endpoint replied with an error";
-                spanLastStatus.style.backgroundColor = "red";
-                spanLastStatus.style.padding = "3px";
-                spanLastStatus.style.color = "white";
+            error: function() {
+                var spanLastStatus = document.getElementById('lastStatus');
+                spanLastStatus.innerHTML = 'The endpoint replied with an error';
+                spanLastStatus.style.backgroundColor = 'red';
+                spanLastStatus.style.padding = '3px';
+                spanLastStatus.style.color = 'white';
             },
         })
     }
 
     old_count_variation = [count_variation[0],count_variation[1],count_variation[2],count_variation[3],count_variation[4]];
     count_variation = [0,0,0,0,0];
-    if (divRNM.value === "03") {
-        count = ["0000","0000","0000","0000","0000"];
-    };
+    if (divRNM.value === '03') {
+        count = ['0000','0000','0000','0000','0000'];
+    }
     old_count = [count[0],count[1],count[2],count[3],count[4]];
 
     for (i = 1; i < 6; i++) {
-        var objVar = "increment" + i.toString();
-        var objCount = "counter" + i.toString();
-        var divobj = document.getElementById(objCount);
-        var divvar = document.getElementById(objVar);
+        let objVar = `increment${i.toString()}`
+        let objCount = `counter${i.toString()}`
+        let divobj = document.getElementById(objCount);
+        let divvar = document.getElementById(objVar);
+
         divobj.innerHTML = count[i-1];
         divvar.innerHTML = count_variation[i-1];
     }
 
     old_code = [new_code[0],new_code[1],new_code[2],new_code[3],new_code[4],new_code[5]];
-    new_code = ["0","0","0","0","0","0"];
-    var objCode = document.getElementById("currentCode");
+    new_code = ['0','0','0','0','0','0'];
+
+    let objCode = document.getElementById('currentCode');
+    let objOldCode = document.getElementById('lastCode');
+
     objCode.innerHTML = new_code.toString().split(',').join('');
-    var objOldCode = document.getElementById("lastCode");
     objOldCode.innerHTML = old_code.toString().split(',').join('');
 
     old_badge = current_badge;
@@ -168,94 +161,88 @@ function sendFrame() {
 }
 
 function buttonpressed(button) {
-    var divRNM = document.getElementById("rnm");
-    if (((divRNM.value === "01") || (divRNM.value === "03")) && (current_badge === 0)) {
+    var divRNM = document.getElementById('rnm');
+    if (((divRNM.value === '01') || (divRNM.value === '03')) && (current_badge === 0)) {
         clickButton();
 
         count[button-1] = incrementCount(count[button-1]);
 
         count_variation[button-1] = parseInt(count[button-1],16) - parseInt(old_count[button-1],16);
 
-        var objVar = "increment" + button.toString();
-        var objCount = "counter" + button.toString();
-        var divobj = document.getElementById(objCount);
-        var divvar = document.getElementById(objVar);
+        let objVar = `increment${i.toString()}`;
+        let objCount = `counter${i.toString()}`;
+        let divobj = document.getElementById(objCount);
+        let divvar = document.getElementById(objVar);
+
         divobj.innerHTML = count[button-1];
         divvar.innerHTML = count_variation[button-1];
-    } else if (((divRNM.value === "01") || (divRNM.value === "03")) && (current_badge === 1)) {
-        var divWarningCount = document.getElementById("WarningCount");
+    } else if (((divRNM.value === '01') || (divRNM.value === '03')) && (current_badge === 1)) {
+        let divWarningCount = document.getElementById('WarningCount');
         divWarningCount.style.display='block';
-        divWarningCount.innerHTML = "Warning: badge pressed, immediate send required";
+        divWarningCount.innerHTML = 'Warning: badge pressed, immediate send required';
     }
 
-    if ((divRNM.value === "02") && (current_badge === 0)) {
-        if (new_code[0] === "0"){
+    if ((divRNM.value === '02') && (current_badge === 0)) {
+        if (new_code[0] === '0'){
             clickButton();
             new_code.shift();
             new_code.push(button.toString());
 
-            var objCode = document.getElementById("currentCode");
+            let objCode = document.getElementById('currentCode');
             objCode.innerHTML = new_code.toString().split(',').join('');
             count[button-1] = incrementCount(count[button-1]);
             count_variation[button-1] = parseInt(count[button-1],16) - parseInt(old_count[button-1],16);
         } else {
-            var divWarningCode = document.getElementById("WarningCode");
-            divWarningCode.style.display='block';
-            divWarningCode.innerHTML = "Warning: you reached the maximum digit number";
+            let divWarningCode = document.getElementById('WarningCode');
+            divWarningCode.style.display = 'block';
+            divWarningCode.innerHTML = 'Warning: you reached the maximum digit number';
         };
-    } else if ((divRNM.value === "02") && (current_badge === 1)) {
-        var divWarningCode = document.getElementById("WarningCode");
-        divWarningCode.style.display='block';
-        divWarningCode.innerHTML = "Warning: badge pressed, immediate send required";
+    } else if ((divRNM.value === '02') && (current_badge === 1)) {
+        let divWarningCode = document.getElementById('WarningCode');
+        divWarningCode.style.display = 'block';
+        divWarningCode.innerHTML = 'Warning: badge pressed, immediate send required';
     }
 }
 
 function badgeover() {
-    var divbadge = document.getElementById("badgetop");
-    divbadge.setAttribute("fill", "#5d98ba");
+    badge('#5d98ba');
 }
 
 function badgeout() {
-    var divbadge = document.getElementById("badgetop");
-    divbadge.setAttribute("fill", "#4fc0e8");
+    badge('#4fc0e8');
+}
+
+function badge(color) {
+    let divbadge = document.getElementById('badgetop');
+    divbadge.setAttribute('fill', color);
 }
 
 function badgepressed() {
     if (current_badge === 0) {
         clickBadge();
-        var divCurrentBadge = document.getElementById("currentBadge");
-        var divCurrentBadgeCode = document.getElementById("currentBadgeCode");
-        if (current_badge === 1) {
-            divCurrentBadge.innerHTML = "Yes";
-            divCurrentBadgeCode.innerHTML = "Yes";
-        } else {
-            divCurrentBadge.innerHTML = "No";
-            divCurrentBadgeCode.innerHTML = "No";  
-        }
-        var divOldBadge = document.getElementById("oldBadge");
-        if (old_badge === 1) {
-            divOldBadge.innerHTML = "Yes";
-        } else {
-            divOldBadge.innerHTML = "No";  
-        }
+        let divCurrentBadge = document.getElementById('currentBadge');
+        let divCurrentBadgeCode = document.getElementById('currentBadgeCode');
+
+        const currentBadgeActive = current_badge === 1 ? 'Yes' : 'No';
+        divCurrentBadge.innerHTML = currentBadgeActive;
+        divCurrentBadgeCode.innerHTML = currentBadgeActive;
+
+        let divOldBadge = document.getElementById('oldBadge');
+        divOldBadge.innerHTML = old_badge === 1 ? 'Yes' : 'No';
     } else {
-        var divWarningCode = document.getElementById("WarningCode");
-        divWarningCode.style.display='block';
-        divWarningCode.innerHTML = "Warning: badge already pressed, immediate send required";
-        var divWarningCount = document.getElementById("WarningCount");
-        divWarningCount.style.display='block';
-        divWarningCount.innerHTML = "Warning: badge already pressed, immediate send required";
+        let divWarningCode = document.getElementById('WarningCode');
+        divWarningCode.style.display = 'block';
+        divWarningCode.innerHTML = 'Warning: badge already pressed, immediate send required';
+        let divWarningCount = document.getElementById('WarningCount');
+        divWarningCount.style.display = 'block';
+        divWarningCount.innerHTML = 'Warning: badge already pressed, immediate send required';
     }
 }
 
 function countApiMessage() {
-    if (current_badge === 1) {
-        var frameType = "03";
-    } else {
-        var frameType = "02";
-    }
-    var currentTime = new Date();
-    var apiMessage = {
+    let frameType = current_badge === 1 ? '03' : '02';
+    let currentTime = new Date();
+    let apiMessage = {
         device:device_name,
         time:currentTime.toISOString(),
         sq_num: sq_num,
@@ -276,21 +263,15 @@ function countApiMessage() {
 }
 
 function codeApiMessage() {
-    if (current_badge === 1) {
-        var frameType = "3";
-    } else {
-        var frameType = "1";
-    };
-    if (old_badge === 1) {
-        frameType = frameType + "3";
-    } else {
-        frameType = frameType + "1";
-    };
-    var currentTime = new Date();
+    let frameType = current_badge === 1 ? '3' : '1';
+    frameType = old_badge === 1 ? `${frameType}3` : `${frameType}1`;
+
+    let currentTime = new Date();
     if (sq_num > 1) {
         last_code_minute = Math.ceil((currentTime - last_send)/60000);
     }
-    var apiMessage = {
+
+    let apiMessage = {
         device:device_name,
         time:currentTime.toISOString(),
         dc_delay:0,
@@ -321,103 +302,84 @@ function codeApiMessage() {
     return apiMessage;
 }
 
-function buttonover(button) {
-    var objCount = "button" + button.toString();
-    var divobj = document.getElementById(objCount);
-    divobj.setAttribute("fill", overColor[button-1]);
+function buttonover() {
+    handleButton(false);
 }
 
-function buttonout(button) {
-    var objCount = "button" + button.toString();
-    var divobj = document.getElementById(objCount);
-    divobj.setAttribute("fill", normalColor[button-1]);
+function buttonout() {
+    handleButton(true);
+}
+
+function handleButton(isNormal) {
+    let objCount = `button${button.toString()}`;
+    let divobj = document.getElementById(objCount);
+    divobj.setAttribute('fill', isNormal ? normalColor[button-1] : overColor[button-1]);
+}
+
+function setLedColor(color) {
+    for (i = 1; i < 4; i++) {
+        led = 'led' + i.toString();
+        divobj = document.getElementById(led);
+        divobj.setAttribute('fill', color);
+    }
 }
 
 function clickButton() {
-    var greenLed = "#00f700";
-    var blinkFreq = 100;
-    var divobj;
-    var led;
-    var i;
-    var divRNM = document.getElementById("rnm");
-    for (i = 1; i < 4; i++) {
-        led = "led" + i.toString();
-        divobj = document.getElementById(led);
-        divobj.setAttribute("fill", greenLed);
-    }
+    let greenLed = '#00f700';
+    let blinkFreq = 100;
+    let divRNM = document.getElementById('rnm');
+
+    setLedColor(greenLed);
 
     setTimeout(function(){
-        for (i = 1; i < 4; i++) {
-            led = "led" + i.toString();
-            divobj = document.getElementById(led);
-            divobj.setAttribute("fill", "white");
-        }
+        setLedColor('white');
     }, blinkFreq);
-    if (divRNM.value !== "02") {
+
+    if (divRNM.value !== '02') {
         setTimeout(function(){
-            for (i = 1; i < 4; i++) {
-                led = "led" + i.toString();
-                divobj = document.getElementById(led);
-                divobj.setAttribute("fill", greenLed);
-            }
+            setLedColor(greenLed);
         }, blinkFreq * 3);
+
         setTimeout(function(){
-            for (i = 1; i < 4; i++) {
-                led = "led" + i.toString();
-                divobj = document.getElementById(led);
-                divobj.setAttribute("fill", "white");
-            }
+            setLedColor(white);
         }, blinkFreq * 4);
     }
 }
 
 function clickBadge() {
-    var divbadge = document.getElementById("div-badge");
-    divbadge.style["margin-top"] = "0.5em";
-    var divonde1 = document.getElementById("onde1");
-    divonde1.style["display"] = "block";
-    var divonde2 = document.getElementById("onde2");
-    divonde2.style["display"] = "block";
+    let divbadge = document.getElementById('div-badge');
+    let divonde1 = document.getElementById('onde1');
+    let divonde2 = document.getElementById('onde2');
+
+    divbadge.style['margin-top'] = '0.5em';
+    divonde1.style['display'] = 'block';
+    divonde2.style['display'] = 'block';
+
     setTimeout(function(){
-        divbadge.style["margin-top"] = "2em";
-        var divonde1 = document.getElementById("onde1");
-        divonde1.style["display"] = "none";
-        var divonde2 = document.getElementById("onde2");
-        divonde2.style["display"] = "none";
+        let divonde1 = document.getElementById('onde1');
+        let divonde2 = document.getElementById('onde2');
+
+        divbadge.style['margin-top'] = '2em';
+        divonde1.style['display'] = 'none';
+        divonde2.style['display'] = 'none';
     }, 1000);
 
     current_badge = 1;
 
-    var greenLed = "red";
-    var blinkFreq = 100;
-    var divobj;
-    var led;
-    var i;
-    for (i = 1; i < 4; i++) {
-        led = "led" + i.toString();
-        divobj = document.getElementById(led);
-        divobj.setAttribute("fill", greenLed);
-    }
+    let greenLed = 'red';
+    let blinkFreq = 100;
+
+    setLedColor(greenLed);
 
     setTimeout(function(){
-    for (i = 1; i < 4; i++) {
-        led = "led" + i.toString();
-        divobj = document.getElementById(led);
-        divobj.setAttribute("fill", "white");
-    }
+        setLedColor('white');
     }, blinkFreq);
+
     setTimeout(function(){
-        for (i = 1; i < 4; i++) {
-            led = "led" + i.toString();
-            divobj = document.getElementById(led);
-            divobj.setAttribute("fill", greenLed);
-        }
+        setLedColor(greenLed);
     }, blinkFreq * 3);
+
     setTimeout(function(){
-        for (i = 1; i < 4; i++) {
-            led = "led" + i.toString();
-            divobj = document.getElementById(led);
-            divobj.setAttribute("fill", "white");
-        }
+        setLedColor('white');
     }, blinkFreq * 4);
 }
